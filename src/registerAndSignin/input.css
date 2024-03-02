@@ -1,0 +1,63 @@
+.input {
+  margin-top: 6%;
+  width: 80%;
+  background-color: #333;
+  color: #fff;
+  padding: 20px 05px 05px 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+label {
+  width: 100%;
+  position: relative;
+}
+
+
+.input + span {
+  color: rgba(255, 255, 255, 0.808);
+  position: absolute;
+  left: 10.6%;
+  font-size: 13px;
+  cursor: text;
+  transition: .3s ease;
+  top: 32px;
+  font-family: "Unbounded", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.input:placeholder-shown + span {
+  top: 42px;
+  font-size: 16px;
+}
+
+label .input:focus + span{
+  color: #00bfff;
+  top: 32px;
+  font-size: 13px;
+  font-family: "Unbounded", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  transition: .3s ease;
+}
+
+.input:invalid + span{
+  color: #ff492d;
+  top: 32px;
+  font-size: 13px;
+  font-weight: 300;
+  transition: .3s ease;
+}
+
+input:-webkit-autofill  {
+   box-shadow: 0 0 0 22px #333 inset;
+  caret-color: white;
+   -webkit-text-fill-color: white;
+}
+
+

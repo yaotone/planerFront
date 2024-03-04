@@ -2,4 +2,5 @@
     width: 100vw;
     height:calc(100vh - 30px);
     background-color: #1A1A1A;
+    flex-grow: 1;
 }

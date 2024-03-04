@@ -1,5 +1,12 @@
 .sidebar{
     height: calc(100vh-30px);
-    width: 270px;
+    width: 0px;
+    min-width: 0px;
     background-color: #212121;
+    transition: 0.7s;
+}
+
+.active{
+    min-width: 270px;
+    transition: 0.5s;
 }

@@ -1,9 +1,13 @@
 import './header.css';
+import Switch from './switch';
+function handleSwitch(){
+    document.querySelector('.sidebar').classList.toggle("active");
+}
 
-export default function Header({children}){
+export default function Header(){
     return(
         <div className="header">
-            {children}
+            <Switch onClick={handleSwitch}></Switch>
         </div>
     )
 }

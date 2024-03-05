@@ -1,0 +1,20 @@
+.variant{
+    display: flex;
+    position:relative;
+
+    margin-top: 10px;
+    width: 190px;
+    height: 20px;
+    background-color: #575757;
+    border-radius: 3px;
+    color: white;
+    font-size: 12px;
+    padding-left: 10px;
+    align-items: center;
+    transition: 0.5s;
+}
+
+.variant:hover{
+    background-color: #444444;
+    transition: 0.5s;
+}

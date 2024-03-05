@@ -55,11 +55,11 @@ label .input:focus + span{
 }
 
 input:-webkit-autofill  {
-   box-shadow: 0 0 0 30px #333 inset;
+  box-shadow: 0 0 0 30px #333 inset;
   caret-color: white;
-   -webkit-text-fill-color: white;
-border: 1px solid rgb(85, 85, 85);
-   border-radius: 10px;
+  -webkit-text-fill-color: white;
+  border: 1px solid rgb(85, 85, 85);
+  border-radius: 10px;
 }
 
 

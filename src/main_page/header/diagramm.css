@@ -1,0 +1,9 @@
+.pie {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    /* border: 1px solid #575757; */
+    border: 1px solid #ffffff;
+    color: rgb(35, 35, 35);
+    margin-left: 5px;
+}

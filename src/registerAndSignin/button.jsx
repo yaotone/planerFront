@@ -4,7 +4,7 @@ export default function Button({children, onClick}){
 
     return(
         <>
-        <button onClick={onClick} type="submit">{children} </button>
+        <button className="submit_button" onClick={onClick} type="submit">{children}</button>
         </>
     )
 }

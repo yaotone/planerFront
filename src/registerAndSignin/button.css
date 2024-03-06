@@ -1,4 +1,4 @@
-button {
+.submit_button {
   margin-top: 6%;
   width: 84.5%;
   border: none;
@@ -15,11 +15,11 @@ button {
   transition: 0.2s all;
 }
 
-button:hover {
+.submit_button:hover {
   background-color: #0095c7;
   transition: 0.2s all;
 }
 
-button:active{
+.submit_button:active{
   transform: translateY(1px);
 }

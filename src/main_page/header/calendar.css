@@ -1,0 +1,28 @@
+.calendar_button{
+    width: 22px;
+    height: 22px;
+    background-color: inherit;    
+    border-radius: 3px;
+    transition: 0.1s;
+    margin-left: 5px;
+}
+
+.calendar_button:hover{
+    cursor: pointer;
+    transform:translateY(-0.5px);
+    background-color: #575757;
+    transition: 0.1s;
+}
+
+.calendar_button:active{
+    transform: translateY(0.2px);
+}
+
+.calendar{
+    width: 18px;
+    height: 18px;
+    position: relative;
+    left: 2px;
+    top: 2px;
+}
+

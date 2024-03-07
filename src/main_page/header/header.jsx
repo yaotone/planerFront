@@ -9,6 +9,8 @@ import exit from '../../icons/exit.png'
 function handleSwitch(){
     document.querySelector('.sidebar').classList.toggle("active_sidebar");
     document.querySelector('.tasks_menu').classList.toggle("move_task_menu");
+    let sidebar_buttons = document.querySelectorAll('.sidebar_button');
+    sidebar_buttons.forEach((e)=>e.classList.toggle('sidebar_button_show'));
 }
 
 export default function Header(){
@@ -25,7 +27,9 @@ export default function Header(){
                     </button>
                     <Calendar></Calendar>
                     <Diagramm percents={1/4*100} />
-                    <span className='tasks_complete'>1/4</span>
+                    <span className='tasks_complete' title=
+                    'Выполненые задания из всех поставленных на сегодня'
+                    >1/4</span>
                 </div>
                 <div className='exit'>
                     <img className="exit_icon" src={exit} alt="exit" />

@@ -3,7 +3,9 @@
     width: 0px;
     min-width: 0px;
     background-color: #212121;
-    transition: 0.7s;
+    transition: 0.5s;
+    display: flex;
+    flex-direction: column;
 }
 
 .active_sidebar{

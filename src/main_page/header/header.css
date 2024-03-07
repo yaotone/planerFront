@@ -50,6 +50,7 @@
 .tasks_complete{
     margin-left: 5px;
     color: white;
+    cursor: help;
 }
 
 .exit{
@@ -64,6 +65,7 @@
     border-radius: 3px;
     transition: 0.1s;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .exit:hover{

@@ -6,6 +6,7 @@ import Calendar from './calendar';
 import Diagramm from './diagramm';
 import exit from '../../icons/exit.png'
 
+
 function handleSwitch(){
     document.querySelector('.sidebar').classList.toggle("active_sidebar");
     document.querySelector('.tasks_menu').classList.toggle("move_task_menu");

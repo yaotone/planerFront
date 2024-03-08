@@ -4,7 +4,6 @@
     width: 236px;
     height: 32px;
     transition: 0.5s;
-
     border: none;
     outline: none;
     background-color: inherit;
@@ -16,6 +15,16 @@
     cursor: pointer;
 }
 
+
+.sidebar_button_show{
+    left: 32px;
+    transition: 0.5s ;
+}
+
+.active_button{
+    background-color: #3A3A3A;
+}
+
 .sidebar_button:hover{
     background-color: #2e2e2e;
 }
@@ -25,6 +34,7 @@
     height: 32px;
     background-color: rgba(255, 255, 255, 0);
     margin-top: 5px;
+    z-index: 0;
 }
 
 .left{
@@ -43,14 +53,14 @@
     font-size: 16px;
 }
 
-.sidebar_button_show{
-    left: 32px;
-    transition: 0.5s ;
-}
-
 .to_do_count{
     text-align: right;
     color: #7C7C7C;
     width: 35px;
     font-size: 16px;
+}
+
+.to_do_count_active{
+    color: red;
+    transition: 0.5s;
 }

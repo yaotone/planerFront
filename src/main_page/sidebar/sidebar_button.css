@@ -1,6 +1,7 @@
 .sidebar_button{
     position: absolute;
-    left: -236px;
+    right: 2px;
+    left: auto;
     width: 236px;
     height: 32px;
     transition: 0.5s;
@@ -17,7 +18,6 @@
 
 
 .sidebar_button_show{
-    left: 32px;
     transition: 0.5s ;
 }
 

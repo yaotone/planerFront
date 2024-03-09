@@ -1,0 +1,122 @@
+.folder_container{
+    display: flex;
+    height: fit-content;
+    flex-direction: column;
+}
+
+#folder{
+    right: 2px;
+    left: auto;
+    width: 236px;
+    height: 32px;
+    display: none;
+}
+
+.folder{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 2px;
+    left: auto;
+    width: 236px;
+    height: 32px;
+    background-color: inherit;
+    margin-top: 5px;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+.folder:hover{
+    background-color: #2e2e2e;
+}
+
+.unfold{
+    width: 15px;
+    height: 15px;
+    transition: 0.5s;
+}
+
+.folder{
+    display: flex;
+    justify-content: space-between;
+}
+
+.folder_left{
+    display: flex;
+    align-items: center;
+    align-items: center;
+}
+
+.text{
+    margin-left: 10px;
+    color: white;
+}
+
+#folder:checked + .folder .unfold{
+    transform: rotate(90deg);
+    transition: 0.5s;
+}
+
+.unfold_container{
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: 5px;
+    right: auto;
+}
+
+.folder_right{
+    display: flex;
+    align-items: center;
+    margin-right: 1px ;
+}
+
+.add{
+    width: 25px;
+    height: 25px;
+}
+
+.add_tag{
+    height: 25px;
+    width: 25px;
+    background-color: inherit;
+    outline: none;
+    border: none;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    padding: 0px 0 0px 0px;
+}
+
+.add_tag:hover{
+    background-color: #282828;
+    transition: 0.1s;
+}
+
+.add_tag:active{
+    transform: translateY(0.4px);
+}
+
+.dropdown_container{
+    position: absolute;
+    right: 2px;
+    left: auto;
+    display:flex;
+    flex-direction: column;
+    width: 236px;
+    height: fit-content;
+    margin-top: 220px;
+    background-color: inherit;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.dropdown_show{
+    visibility: visible;
+    opacity: 1;
+    margin-top: 225px;
+    transition:all 0.5s;
+}

@@ -1,0 +1,35 @@
+.tag_container{
+    width: 236px;
+    height: 32px;
+    background-color: inherit;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.tag_container:hover{
+    background-color: #2e2e2e;
+}
+
+.circle_container{
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: 8px;
+    right: auto;
+}
+
+.circle{
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+}
+
+.tag_name{
+    color: white;
+    margin-left: 10px;
+}
+
+

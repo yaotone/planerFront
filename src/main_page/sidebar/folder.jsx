@@ -2,8 +2,21 @@ import './folder.css'
 import unfold from '../../icons/unfold.png'
 import add from '../../icons/add.png'
 import Tag from './tag'
+import UserTag from './user_tag'
+import { useState } from 'react'
+
 
 export default function Folder({onClick, isUnfold}){
+
+    const [tagArr, setTagArr] = 
+    useState([['orange', 'надпись 1'], ['black', 'надпись 2авоаовыосив']])
+    // max 20 symbols
+
+    function remove(index){
+        setTagArr([...tagArr.slice(0, index),
+            ...tagArr.slice(index+1)])
+    }
+
     return(
         <>
             <div className='folder_container'>
@@ -28,6 +41,10 @@ export default function Folder({onClick, isUnfold}){
                 <Tag color={'red'}>Важное</Tag>
                 <Tag color={'#63FF2D'}>Купить</Tag>
                 <Tag color={'#E021FF'}>Подарок</Tag>
+
+                { [...tagArr].map((item, index) => 
+                <UserTag key={index} color={item[0]} onClick={()=>remove(index)}> 
+                {item[1]} </UserTag> ) }
             </div>
         </>
     )

@@ -33,7 +33,7 @@
 .unfold{
     width: 15px;
     height: 15px;
-    transition: 0.5s;
+    transition: 0.4s;
 }
 
 .folder{
@@ -54,7 +54,7 @@
 
 #folder:checked + .folder .unfold{
     transform: rotate(90deg);
-    transition: 0.5s;
+    transition: 0.4s;
 }
 
 .unfold_container{
@@ -111,12 +111,12 @@
     background-color: inherit;
     visibility: hidden;
     opacity: 0;
-    transition: all 0.5s;
+    transition: all 0.4s;
 }
 
 .dropdown_show{
     visibility: visible;
     opacity: 1;
     margin-top: 225px;
-    transition:all 0.5s;
+    transition: all 0.4s;
 }

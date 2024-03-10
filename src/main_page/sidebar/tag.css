@@ -5,15 +5,15 @@
     border-radius: 2px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .tag_container:hover{
     background-color: #2e2e2e;
+    transition: 0.3s;
 }
 
 .circle_container{
-    width: 25px;
-    height: 25px;
     display: flex;
     align-items: center;
     position: relative;

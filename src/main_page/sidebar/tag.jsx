@@ -8,10 +8,10 @@ export default function Tag({children, color}){
                 <div className='circle' style={{backgroundColor: color}}>
 
                 </div>
-            </div>
-            <span className='tag_name'>
+                <span className='tag_name'>
                 {children}
-            </span>
+                </span>
+            </div>
         </div>
     )
 }

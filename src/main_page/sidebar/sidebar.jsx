@@ -8,14 +8,13 @@ import { useState } from "react"
 import Folder from "./folder"
 
 
-export default function Sidebar(){
+export default function Sidebar({handleClick, active}){
 
-    const [active, setActive] = useState('Сегодня');
-    const [isUnfold, setIsUnfold] = useState(false);
-
-    function handleClick(type){
-       setActive(type);
+    function handleActive(active){
+        handleClick(active);
     }
+
+    const [isUnfold, setIsUnfold] = useState(false);
 
     function handleFolderClick(){
         if(isUnfold === true){
@@ -30,10 +29,10 @@ export default function Sidebar(){
     return(
         
         <div className="sidebar">
-            <SidebarButton style={40} image={today} amount={"4"} onClick={()=>handleClick('Сегодня')} isActive={active}>Сегодня</SidebarButton>
-            <SidebarButton image={timeline} amount={"20"} onClick={()=>handleClick('Таймлайн')} isActive={active}>Таймлайн</SidebarButton>
-            <SidebarButton image={missed} amount={"1"} onClick={()=>handleClick('Просроченные')} isActive={active}>Просроченные</SidebarButton>
-            <SidebarButton image={complete} amount={"1"} onClick={()=>handleClick('Выполненые')} isActive={active}>Выполненые</SidebarButton>
+            <SidebarButton style={40} image={today} amount={"4"} onClick={()=>handleActive('Сегодня')} isActive={active}>Сегодня</SidebarButton>
+            <SidebarButton image={timeline} amount={"20"} onClick={()=>handleActive('Таймлайн')} isActive={active}>Таймлайн</SidebarButton>
+            <SidebarButton image={missed} amount={"1"} onClick={()=>handleActive('Просроченные')} isActive={active}>Просроченные</SidebarButton>
+            <SidebarButton image={complete} amount={"1"} onClick={()=>handleActive('Выполненые')} isActive={active}>Выполненые</SidebarButton>
             <div className="horizontal">
                 <hr />
             </div>

@@ -28,10 +28,8 @@ export default function Folder({onClick, isUnfold}){
         }
     }
 
-
-    const[color, setColor] = useState('');
+    const[color, setColor] = useState('#000000');
     const[text, setText] = useState('');
-
 
     function handleChangeColor(color){
         setColor(color);

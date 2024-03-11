@@ -3,7 +3,7 @@ import './tag.css'
 import check from '../../icons/check.png'
 import { useState } from 'react'
 
-export default function AddTag({onAdd, isShown, onChangeColor, onChangeText}){
+export default function AddTag({onAdd, isShown, onChangeColor, onChangeText, isEmpty}){
     function handleColor(e){
         onChangeColor(e.target.value);
     }
@@ -17,10 +17,10 @@ export default function AddTag({onAdd, isShown, onChangeColor, onChangeText}){
             
             <div className='input_color'>
                 <input type='color' className='choose_color' 
-                onChange={handleColor}/>
+                onChange={handleColor} />
                             <span className='tag_input'>
                 <input type="text" className='add_tag_name' 
-                maxLength={19} onChange={handleText}/>
+                maxLength={19} onChange={handleText} placeholder='Введите название тэга'/>
             </span>
             </div>
             <div className='check'>

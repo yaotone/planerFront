@@ -38,7 +38,7 @@
   margin-top: 0%;
 }
 #RegForm p {
-  margin-top: -2%;
+  margin-top: 3%;
   color: rgba(255, 255, 255, 0.7);
   font-family: "Unbounded", sans-serif;
   font-weight: 500;
@@ -67,7 +67,7 @@
 }
 
 #SignInForm p {
-  margin-top:-2%;
+  margin-top:3%;
   color: rgba(255, 255, 255, 0.7);
   font-family: "Unbounded", sans-serif;
   font-weight: 500;

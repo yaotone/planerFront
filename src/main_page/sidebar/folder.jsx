@@ -3,18 +3,51 @@ import unfold from '../../icons/unfold.png'
 import add from '../../icons/add.png'
 import Tag from './tag'
 import UserTag from './user_tag'
+import AddTag from './add_tag'
 import { useState } from 'react'
 
 
 export default function Folder({onClick, isUnfold}){
 
     const [tagArr, setTagArr] = 
-    useState([['orange', 'надпись 1'], ['black', 'надпись 2авоаовыосив']])
-    // max 20 symbols
+    useState([{tagColor: 'red', tagText: 'fwfwefw'}, {tagColor: 'black', tagText: 'text2'}])
+    // max 19 symbols
+    const [isShown, setIsShown] = useState('no');
 
     function remove(index){
         setTagArr([...tagArr.slice(0, index),
             ...tagArr.slice(index+1)])
+    }
+
+    function handleCancel(){
+        if(isShown === 'no'){
+            setIsShown('yes');
+        }
+        else{
+            setIsShown('no');
+        }
+    }
+
+
+    const[color, setColor] = useState('');
+    const[text, setText] = useState('');
+
+
+    function handleChangeColor(color){
+        setColor(color);
+    }
+
+    function handleChangeText(text){
+        setText(text);
+    }
+
+    function handleOnAdd(){
+        let newUserTag = {
+            tagColor: color,
+            tagText: text
+        }
+        setIsShown('no');
+        setTagArr([...tagArr, newUserTag]);
     }
 
     return(
@@ -31,8 +64,8 @@ export default function Folder({onClick, isUnfold}){
                         </div>
                     </div>
                     <div className='folder_right'>
-                        <button className='add_tag'>
-                            <img src={add} alt="add" className='add'/>
+                        <button className='add_tag' onClick={handleCancel} disabled={!isUnfold}>
+                            <img src={add} alt="add" className={(isShown==='yes' ? 'add add_rotate' : 'add')}/>
                         </button>
                     </div>
                 </label>
@@ -43,8 +76,12 @@ export default function Folder({onClick, isUnfold}){
                 <Tag color={'#E021FF'}>Подарок</Tag>
 
                 { [...tagArr].map((item, index) => 
-                <UserTag key={index} color={item[0]} onClick={()=>remove(index)}> 
-                {item[1]} </UserTag> ) }
+                <UserTag key={index} color={item.tagColor} onClick={()=>remove(index)}> 
+                {item.tagText} </UserTag> ) }
+
+                <AddTag onAdd={handleOnAdd} isShown={isShown}
+                onChangeColor={handleChangeColor} onChangeText={handleChangeText}
+                ></AddTag>
             </div>
         </>
     )

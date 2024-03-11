@@ -12,6 +12,7 @@
     display: none;
 }
 
+
 .folder{
     display: flex;
     align-items: center;
@@ -76,6 +77,12 @@
 .add{
     width: 25px;
     height: 25px;
+    transition: 0.3s;
+}
+
+.add_rotate{
+    transform: rotate(45deg);
+    transition: 0.3s;
 }
 
 .add_tag{

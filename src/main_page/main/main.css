@@ -5,4 +5,10 @@
     flex-grow: 1;
     display: flex;
     justify-content: center;
+    overflow-y: scroll;
+    padding-bottom: 0px;
+}
+
+.main_content::-webkit-scrollbar{
+    display: none;
 }

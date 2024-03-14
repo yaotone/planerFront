@@ -1,0 +1,99 @@
+.plan_container{
+    position: relative;
+    background-color: inherit;
+    width: 100%;
+    height: 80px;
+    border-bottom: 0.5px solid #AAAAAA;
+    justify-content: space-between;
+    display: flex;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.full{
+    transition: 0.5s;
+}
+
+.complete_circle{
+    width: 17px;
+    height: 17px;
+    outline: 1px solid #AAAAAA;
+    border-radius: 50%;
+    margin-top: 6px;
+    margin-left: 1px;
+}
+
+.complete_circle:hover{
+    outline: 1.5px solid #5C62FF;
+    background-color: #5c61ff21;
+}
+
+.plan_header{
+    color: white;
+    text-align: left;
+    font-size: 20px;
+    margin-top: 3px;
+    margin-left: 0px;
+}
+
+.plan_date {
+    display: flex;
+    margin-top: 30px;
+    color: white;
+    align-items: center;
+    margin-bottom: 4px;
+    transition: 0.5s;
+}
+
+.date_compressed{
+    margin-top: 0px;
+    transition: 0.5s;
+}
+
+.plan_day{
+    color: #5C62FF;
+}
+
+.plan_time{
+    color: #7B7B7B;
+    width: 30px;
+    height: fit-content;
+    border-radius: 10px;
+    background-color: #373737;
+    margin-left: 5px;
+    font-size: 10px;
+    text-align: center;
+}
+
+.plan_text{
+    position: sticky;
+    width: 95%;
+    height: fit-content;
+    color: white;
+    margin-bottom: 5px;
+    word-break: break-word ;
+}
+
+.left_plan{
+    width: 100%;
+    height: 98%;
+    display: flex;
+}
+
+.right_plan{
+    min-width: 100px;
+    min-height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.plan_data{
+    width: 100%;
+    height: 98%;
+    margin-left: 23px;
+    display: flex;
+    flex-direction: column;
+}
+
+

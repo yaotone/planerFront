@@ -27,7 +27,7 @@ function MainPage() {
   else if(activeMain === 'Просроченные'){
     mainContent = <Outtimed></Outtimed>
   }
-  else if(activeMain === 'Выполненные'){
+  else if(activeMain === 'Выполненые'){
     mainContent = <Complete></Complete>
   }
   

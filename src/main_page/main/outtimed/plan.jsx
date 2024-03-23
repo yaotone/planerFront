@@ -2,7 +2,7 @@ import './plan.css'
 import { useState } from 'react';
 import PlanTag from './plan_tag';
 
-export default function Plan({header, date, time,text,tagArr, circleColor, onCircleClick}){
+export default function Plan({header, date, time,text,tagArr, circleColor, backgroundCircle, onCircleClick}){
 
     const [isFull, setIsFull] = useState(false);
     const [contentHeight, setContentHeight] = useState('80px')
@@ -26,7 +26,7 @@ export default function Plan({header, date, time,text,tagArr, circleColor, onCir
         <div className={isFull? 'plan_container full' : 'plan_container'} style={isFull ? {height: contentHeight } : {height: '80px'}} onClick={handlePlanUnfold}>
             <div className='left_plan'>
                 <div className='complete_circle' onClick={onCircleClick}
-                style={{backgroundColor: circleColor, outline: circleColor}}></div>
+                style={{backgroundColor:backgroundCircle, outline:`1px solid ${circleColor}`}}></div>
                 <div className='plan_data'>
                     <div className='plan_header'>
                         {header}

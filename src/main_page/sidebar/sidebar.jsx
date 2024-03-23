@@ -8,7 +8,8 @@ import { useState } from "react"
 import Folder from "./folder"
 
 
-export default function Sidebar({handleClick, active}){
+export default function Sidebar({handleClick, active, tags, isShown, setTagArr, setIsShown,
+    outtimedAmount, completeAmount, timelineAmount, todayAmount}){
 
     function handleActive(active){
         handleClick(active);
@@ -29,14 +30,15 @@ export default function Sidebar({handleClick, active}){
     return(
         
         <div className="sidebar">
-            <SidebarButton style={40} image={today} amount={"4"} onClick={()=>handleActive('Сегодня')} isActive={active}>Сегодня</SidebarButton>
-            <SidebarButton image={timeline} amount={"20"} onClick={()=>handleActive('Таймлайн')} isActive={active}>Таймлайн</SidebarButton>
-            <SidebarButton image={missed} amount={"1"} onClick={()=>handleActive('Просроченные')} isActive={active}>Просроченные</SidebarButton>
-            <SidebarButton image={complete} amount={"1"} onClick={()=>handleActive('Выполненые')} isActive={active}>Выполненые</SidebarButton>
+            <SidebarButton style={40} image={today} amount={`${todayAmount}`} onClick={()=>handleActive('Сегодня')} isActive={active}>Сегодня</SidebarButton>
+            <SidebarButton image={timeline} amount={`${timelineAmount}`} onClick={()=>handleActive('Таймлайн')} isActive={active}>Таймлайн</SidebarButton>
+            <SidebarButton image={missed} amount={`${outtimedAmount}`} onClick={()=>handleActive('Просроченные')} isActive={active}>Просроченные</SidebarButton>
+            <SidebarButton image={complete} amount={`${completeAmount}`} onClick={()=>handleActive('Выполненые')} isActive={active}>Выполненые</SidebarButton>
             <div className="horizontal">
                 <hr />
             </div>
-            <Folder onClick={handleFolderClick} isUnfold={isUnfold}></Folder>
+            <Folder onClick={handleFolderClick} isUnfold={isUnfold} 
+            tagArr = {tags} isShown ={isShown} setIsShown ={setIsShown} setTagArr = {setTagArr}></Folder>
         </div>
     )
 }

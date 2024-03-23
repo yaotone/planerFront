@@ -52,19 +52,15 @@ export default function InputField() {
     let form = document.getElementById('SignInForm');
     let email = form.email.value;
     let password = form.password.value;
-    alert(JSON.stringify({ 
-      username: email,
-      password: password 
-  }));
     fetch("http://127.0.0.1:8000/login", {
         method: "POST",
         headers: { "Accept": "application/json", "Content-Type": "application/json" },
         body: JSON.stringify({ 
             username: email,
             password: password 
-        })
+    })
+
     });
-    navigate("/main_page");
   }
  
   return (

@@ -1,0 +1,50 @@
+.select_tag_container{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+    background-color: rgba(0, 0, 0, 0.077);
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.select_tag_container_hidden{
+    display: none;
+}
+
+.close_tags_container{
+    width: 100%;
+    height: 20px;
+    display: flex;
+    justify-content: right;
+}
+
+.close_tags{
+    position: relative;
+    width: 20px;
+    height: 20px;
+    transition: 0.3s;
+}
+
+.close_tags:hover{
+    background-color: rgba(0, 0, 0, 0.731);
+    transition: 0.3s;
+}
+
+#close_bar1{
+    position: absolute;
+    width: 20px;
+    height: 0.5px;
+    background-color: white;
+    top: 50%;
+    transform: translate(0, -50%) rotate(45deg);
+}
+#close_bar2{
+    position: absolute;
+    width: 0.5px;
+    height: 20px;
+    background-color: white;
+    left: 50%;
+    transform: translate(-50%) rotate(45deg);
+}

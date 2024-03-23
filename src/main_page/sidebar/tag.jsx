@@ -1,9 +1,8 @@
-import { Children } from 'react'
 import './tag.css'
 
-export default function Tag({children, color}){
+export default function Tag({children, color, onTagClick}){
     return(
-        <div className='tag_container'>
+        <div className='tag_container' onClick={onTagClick}>
             <div className='circle_container'>
                 <div className='circle' style={{backgroundColor: color}}>
 

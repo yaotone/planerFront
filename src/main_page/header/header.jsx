@@ -14,7 +14,7 @@ function handleSwitch(){
     sidebar_buttons.forEach((e)=>e.classList.toggle('sidebar_button_show'));
 }
 
-export default function Header(){
+export default function Header({onAddTagClick}){
     return(
         <>
             <div className="header">
@@ -23,7 +23,7 @@ export default function Header(){
                     <Search />
                 </div>
                 <div className='tasks_menu'>
-                    <button className='plus_button'>
+                    <button className='plus_button' onClick={onAddTagClick}>
                         <img className='plus_todo' src={plus_todo} alt='add'/> 
                     </button>
                     <Calendar></Calendar>

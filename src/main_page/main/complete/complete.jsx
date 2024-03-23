@@ -1,9 +1,9 @@
 import './today.css'
 import Plan from './plan'
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-export default function Outtimed({circleColor, backgroundCircle, plans}){
+
+export default function Complete({circleColor, backgroundCircle, plans}){
 
     const [plansArr, setPlansArr] = useState(plans);
 

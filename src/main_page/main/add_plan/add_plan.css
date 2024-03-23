@@ -1,0 +1,120 @@
+.add_plan_container{
+    width: 90%;
+    height: fit-content;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 0.5px solid white;
+}
+
+.add_plan_header p{
+    font-size: 20px;
+    margin-top: 2px;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.plan_inputs_container{
+    display: flex;
+    flex-direction: row;
+}
+
+.plan_inputs{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header_input{
+    border: none;
+    outline: none;
+    overflow: hidden;
+    background-color: inherit;
+    caret-color: white;
+    color: white;
+    width: 90%;
+    margin-top: 3px;
+    font-size: 20px;
+    margin-left: 24px;
+    margin-bottom: 3px;  
+}
+
+.date_and_tags{
+    display: flex;
+    position: relative;
+    margin-left: 19px;
+    color: white;
+    align-items: center;
+}
+
+.add_dates{
+    left: -0px;
+    position: absolute;
+    width: 250px;
+}
+
+.add_dates_hidden{
+    display: none;
+}
+
+.selected_date{
+    margin-left: 4px;
+    color: #5C62FF;
+}
+
+.hours_input{
+    margin-left: 6px;
+    outline: none;
+    border: none;
+    border-bottom: 0.5px solid white;
+    background: none;
+    caret-color: white;
+    color: white;
+    text-align: center;
+}
+
+.minute_input{
+    outline: none;
+    border: none;
+    border-bottom: 0.5px solid white;
+    background: none;
+    caret-color: white;
+    color: white;
+    text-align: center;
+}
+
+.add_tag_to_plan{
+    display: flex;
+}
+
+.add_tag_to_plan_button{
+    margin-left: 8px;
+    width: 110px;
+    height: 13px;
+    background-color: #AAAAAA;
+    border-radius: 10px;
+    transition: 0.3s;
+    font-size: 10px;
+    text-align: center;
+    color: #1A1A1A;
+    cursor: pointer;
+}
+
+.add_tag_to_plan_button:hover{
+    background-color: #7a7a7a;
+    transition: 0.3s;
+}
+
+.add_text_to_plan{
+    width: 95%;
+    outline: none;
+    border: none;
+    background-color: inherit;
+    caret-color: white;
+    color: white;
+    margin: 10px 0 10px 26px;
+    padding: 0;
+    resize: none;
+    height: 20px;
+    min-height: 20px;
+}

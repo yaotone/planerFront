@@ -7,19 +7,12 @@ import AddTag from './add_tag'
 import { useState } from 'react'
 
 
-export default function Folder({onClick, isUnfold}){
-
-    const [tagArr, setTagArr] = 
-    useState([{tagColor: 'red', tagText: 'fwfwefw'}, {tagColor: 'black', tagText: 'text2'}])
-    // max 19 symbols
-    const [isShown, setIsShown] = useState('no');
-
-    function remove(index){
-        setTagArr([...tagArr.slice(0, index),
-            ...tagArr.slice(index+1)])
-    }
+export default function Folder({onClick, isUnfold, tagArr, isShown, setTagArr, setIsShown}){
+    const[color, setColor] = useState('#000000');
+    const[text, setText] = useState('');
 
     function handleCancel(){
+        console.log(isShown)
         if(isShown === 'no'){
             setIsShown('yes');
         }
@@ -27,9 +20,20 @@ export default function Folder({onClick, isUnfold}){
             setIsShown('no');
         }
     }
-
-    const[color, setColor] = useState('#000000');
-    const[text, setText] = useState('');
+    
+    function handleOnAdd(){
+        let newUserTag = {
+            tagColor: color,
+            tagText: text
+        }
+        setIsShown('no');
+        setTagArr([...tagArr, newUserTag]);
+    }
+    
+    function remove(index){
+    setTagArr([...tagArr.slice(0, index),
+        ...tagArr.slice(index+1)])
+    }
 
     function handleChangeColor(color){
         setColor(color);
@@ -39,14 +43,6 @@ export default function Folder({onClick, isUnfold}){
         setText(text);
     }
 
-    function handleOnAdd(){
-        let newUserTag = {
-            tagColor: color,
-            tagText: text
-        }
-        setIsShown('no');
-        setTagArr([...tagArr, newUserTag]);
-    }
 
     return(
         <>

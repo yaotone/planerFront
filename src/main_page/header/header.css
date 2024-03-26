@@ -15,7 +15,7 @@
 .tasks_menu{
     display: flex;
     align-items: center;
-    margin-left: -270px;
+    margin-left: -20px;
     transition: 0.5s;
 }
 
@@ -87,5 +87,21 @@
 
 .move_task_menu{
     transition: 0.5s;
-    margin-left: 0px;
+    margin-left: 230px;
+}
+
+.select_date{
+    position: relative;
+    overflow: visible;
+    width: 250px;
+}
+
+.shown_calendar{
+    position: absolute;
+    left: -110px;
+    z-index: 10;
+}
+
+.calendar_hidden{
+    display: none;
 }

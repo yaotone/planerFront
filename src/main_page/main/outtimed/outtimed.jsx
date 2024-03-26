@@ -3,7 +3,7 @@ import Plan from './plan'
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-export default function Outtimed({circleColor, backgroundCircle, plans}){
+export default function Outtimed({circleColor, backgroundCircle, plans, setCompletePlans}){
 
     const [plansArr, setPlansArr] = useState(plans);
 

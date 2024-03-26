@@ -3,7 +3,7 @@ import Plan from './plan'
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-export default function Today({plans, onChange}){
+export default function Today({plans, onChange, setCompletePlans}){
 
     const [plansArr, setPlansArr] = useState(plans);
 

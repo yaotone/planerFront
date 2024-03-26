@@ -3,7 +3,7 @@ import Input from "./input";
 import Button from "./button";
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-
+import axios from "../api/axios";
 
 
 export default function InputField() {
@@ -23,7 +23,6 @@ export default function InputField() {
   }
 
   const [error, setError] = useState('');
-
 
   
   function handleSubmit(el) {
@@ -47,20 +46,28 @@ export default function InputField() {
     }
   }
 
-  function handleSignIn(el) {    
+  async function handleSignIn(el) {    
     el.preventDefault();
     let form = document.getElementById('SignInForm');
     let email = form.email.value;
     let password = form.password.value;
-    fetch("http://127.0.0.1:8000/login", {
-        method: "POST",
-        headers: { "Accept": "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-            username: email,
-            password: password 
+    axios.post('/login', {
+      username: email,
+      password: password
+    },{
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
     })
+    .then(data=> {
+      if (data.status === 200){
+        axios.defaults.headers.common ={'Authorization': `bearer: ${data.data.access_token}`}
+        navigate('/main_page')
+      }
+    })
+    // возможно надо будет написать с заглавной Bearer
+    .catch(err => console.error(err))
 
-    });
   }
  
   return (

@@ -7,6 +7,7 @@ import Complete from "./main/complete/complete";
 import Outtimed from "./main/outtimed/outtimed";
 import Timeline from "./main/timeline/timeline";
 import AddPlan from "./main/add_plan/add_plan";
+import ChoosedDate from "./main/choosed_date/choosed_date";
 
 import { useState } from "react";
 import { useEffect } from "react";
@@ -22,6 +23,7 @@ function MainPage() {
   const[todayPlans, setTodayPlans] = useState([])
   const[outtimedPlans, setOuttimedPlans] = useState([])
   const[completePlans, setCompletePlans] = useState([])
+  const[choosedDate, setChoosedDate] = useState()
 
   const[amountOuttimed, setAmountOuttimed] = useState(outtimedPlans.length);
   const[amountComplete, setAmountComplete] = useState(completePlans.length);
@@ -70,13 +72,14 @@ function MainPage() {
   let mainContent = <Today plans={todayPlans} ></Today>
 
   if(activeMain === 'Сегодня'){
-    mainContent = <Today plans={todayPlans}></Today>
+    mainContent = <Today plans={todayPlans} setCompletePlans = {setCompletePlans}></Today>
   }
   else if(activeMain === 'Таймлайн'){
     mainContent = <Timeline></Timeline>
   }
   else if(activeMain === 'Просроченные'){
-    mainContent = <Outtimed circleColor={'#FF4040'} backgroundCircle = {'#FF404010'} plans = {outtimedPlans}></Outtimed>
+    mainContent = <Outtimed circleColor={'#FF4040'} setCompletePlans = {setCompletePlans}
+    backgroundCircle = {'#FF404010'} plans = {outtimedPlans}></Outtimed>
   }
   else if(activeMain === 'Выполненые'){
     mainContent = <Complete circleColor={'#63FF2D'} backgroundCircle = {'#63FF2D10'} plans = {completePlans}></Complete>
@@ -89,12 +92,17 @@ function MainPage() {
     setChoosedTags = {setChoosedTags} setHours = {setHours} setMinutes = {setMinutes}
     headerText = {headerText} setHeaderText = {setHeaderText} onCircleClick = {addPlan}></AddPlan>
   }
+  else if(activeMain === 'День'){
+    mainContent = <ChoosedDate choosedDate={choosedDate.toLocaleString('ru-RU',
+    {month: 'long', day: 'numeric'})}></ChoosedDate>
+  }
 
   
   return (
     <>
       <div className = 'main'>
-        <Header onAddTagClick={handleAddTagClick}></Header>
+        <Header onAddTagClick={handleAddTagClick} setChoosedDate = {setChoosedDate}
+        setMain = {setActiveMain} choosedDate = {choosedDate}></Header>
         <div className="row">
           <Sidebar handleClick= {handleMain} active={activeMain} tags ={tagArr} isShown ={isShown}
           setTagArr ={setTagArr} setIsShown= {setIsShown} todayAmount = {amountToday}

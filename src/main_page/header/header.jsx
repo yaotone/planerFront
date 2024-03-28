@@ -18,7 +18,8 @@ function handleSwitch(){
     sidebar_buttons.forEach((e)=>e.classList.toggle('sidebar_button_show'));
 }
 
-export default function Header({onAddTagClick, setChoosedDate, setMain, choosedDate}){
+export default function Header({onAddTagClick, setChoosedDate, setMain, choosedDate, 
+    mainContent, varClick, handleSearch, query, answer}){
 
     const[isCalendarShown, setIsCalendarShown] = useState(false);
     const calendarRef = useRef(null);
@@ -51,7 +52,8 @@ export default function Header({onAddTagClick, setChoosedDate, setMain, choosedD
             <div className="header">
                 <div className='search_menu'>
                     <Switch onClick={handleSwitch}></Switch>
-                    <Search />
+                    <Search mainContent={mainContent} handleVarClick = {varClick} setMain = {setMain} handleSearch = {handleSearch}
+                    query = {query} answer = {answer}/>
                 </div>
                 <div className='tasks_menu'>
                     <button className='plus_button' onClick={onAddTagClick}>

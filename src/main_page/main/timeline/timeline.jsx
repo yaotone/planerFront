@@ -2,9 +2,11 @@ import { useState } from 'react'
 import TimelinePlan from './timeline_plan'
 import './timeline.css'
 import { useEffect } from 'react'
+import axios from '../../../api/axios'
 
 
-export default function Timeline(){
+export default function Timeline({plans}){
+    const[plan, setPlan] = useState([...plans])
 
     const dayjs = require('dayjs')
     require('dayjs/locale/ru')
@@ -17,8 +19,13 @@ export default function Timeline(){
     +dayjs().daysInMonth()+dayjs().month(new Date().getMonth()+1).daysInMonth()));
 
     useEffect(()=>{
+        // axios.get(`/tasks/month?date_query="${dayjs().format('YYYY-MM-DD')}"`)
+        // .then(data => console.log(data))
+        // .catch(err => console.log(err))
         setDaysPercent()
-    })
+        setPlan(plans)
+        console.log(plans)
+    },[plan])
 
     return(
         <div className='timeline_container'>
@@ -35,8 +42,9 @@ export default function Timeline(){
                 <div className='next_month'>{dayjs().month(new Date().getMonth()+1).format('MMMM')[0].toUpperCase()
                 +dayjs().month(new Date().getMonth()+1).format('MMMM').slice(1)}</div>
             </div>
-            <TimelinePlan daysPercent={daysPercent} header= {'текст1'} dates = {'12 февраля-31 марта'}></TimelinePlan>
-            <TimelinePlan daysPercent={daysPercent} header= {'текст2'} dates = {'2 февраля-15 апреля'}></TimelinePlan>
+            {[...plans].map((item)=>{
+                <TimelinePlan daysPercent={daysPercent} header = {item.title} dateend = {dayjs(item.starts_at).format('MMMM-DD')} datestart={dayjs(item.owner.created_at).format('MMMM-DD')}></TimelinePlan>
+            })}
         </div>
     )
 }

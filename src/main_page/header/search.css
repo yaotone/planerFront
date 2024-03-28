@@ -16,7 +16,8 @@
 }
 
 .column{
-    display: block;
+    position: relative;
+    display: flex;
     flex-direction: column;
     margin-left: 10px;
 }

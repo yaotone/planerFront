@@ -6,39 +6,51 @@ import { useNavigate } from "react-router-dom";
 import axios from "../api/axios";
 
 
-export default function InputField() {
+export default function InputField({setAccessToken}) {
+  const[email, setEmail] = useState('')
+  const[password, setPassword] = useState('')
+  const[repPassword, setRepPassword] = useState('')
+  const[activeField, setActiveField] = useState('reg')
+
   const navigate = useNavigate();
-  function switchReg(e) {
-    e.preventDefault();
-    if (
-      document.querySelector(".inputField").classList.contains("active") ===
-      true
-    ) {
-      document.querySelector(".inputField").classList.remove("active");
-      document.querySelector(".signInField").classList.add("active");
-    } else {
-      document.querySelector(".signInField").classList.remove("active");
-      document.querySelector(".inputField").classList.add("active");
+  function switchReg() {
+    if(activeField === 'reg'){
+      setActiveField('sign')
     }
+    else{
+      setActiveField('reg')
+    }
+    // if(activeField === 'reg'){
+    //   document.querySelector(".inputField").classList.remove("active");
+    //   document.querySelector(".signInField").classList.add("active");
+    // }
+    // else{
+    //   setActiveField('reg')
+    // }
+    // if (
+    //   document.querySelector(".inputField").classList.contains("active") ===
+    //   true
+    // ) {
+    //   document.querySelector(".inputField").classList.remove("active");
+    //   document.querySelector(".signInField").classList.add("active");
+    // } else {
+    //   document.querySelector(".signInField").classList.remove("active");
+    //   document.querySelector(".inputField").classList.add("active");
+    // }
   }
 
   const [error, setError] = useState('');
 
   
   function handleSubmit(el) {
-    let form = document.getElementById('RegForm');
     el.preventDefault();
-    let email = form.email.value
-    if (form.password.value === form.RepPassword.value){
-        let password = form.password.value;
-        fetch("http://127.0.0.1:8000/users", {
-            method: "POST",
-            headers: { "Accept": "application/json", "Content-Type": "application/x-www-form-urlencoded" },
-            body: JSON.stringify({ 
+    if (password === repPassword){
+        axios.post("/users",
+            { 
                 email: email,
                 password: password 
-            })
-        });
+            }
+        ).catch(err =>console.log(err))
         switchReg();
     }
     else{
@@ -61,40 +73,56 @@ export default function InputField() {
     })
     .then(data=> {
       if (data.status === 200){
-        axios.defaults.headers.common ={'Authorization': `bearer: ${data.data.access_token}`}
+        localStorage.setItem('token',data.data.access_token)
+        const access_token = localStorage.getItem('token')
+        console.log(access_token)
         navigate('/main_page')
+      }
+      else{
+        console.log('er')
       }
     })
     // возможно надо будет написать с заглавной Bearer
     .catch(err => console.error(err))
 
   }
+
+  function onEmailChange(el){
+    setEmail(el.target.value)
+  }
+  function onPasswordChange(el){
+    setPassword(el.target.value)
+  }
+
+  function onRepPasswordChange(el){
+    setRepPassword(el.target.value)
+  }
  
   return (
     <>
-      <div className="inputField active">
+      <div className={activeField === 'reg'? "inputField active": 'inputField'}>
         <p className="Register">Регистрация</p>
         <p className="error_message">{error}</p>
-        <form className="inputs" id="RegForm" onSubmit={handleSubmit} method="post">
-          <Input type="email" minLength={8} setName="email">
+        <form className="inputs" id="RegForm" method="post" onSubmit={handleSubmit}>
+          <Input type="email" minLength={8} setName="email" onChange={onEmailChange} value = {email}>
             Почта
           </Input>
-          <Input type="password" minLength={8} setName="password">
+          <Input type="password" minLength={8} setName="password" onChange={onPasswordChange} value = {password}>
             Пароль
           </Input>
-          <Input type="password" minLength={8} setName="RepPassword">
+          <Input type="password" minLength={8} setName="RepPassword" onChange={onRepPasswordChange} value = {repPassword}>
             Повторите пароль
           </Input>
           <Button>Отправить</Button>
           <p>
             Уже есть аккаунт?
-            <button className="SignIn" onClick={switchReg}>
+            <button className="SignIn" onClick={switchReg} type = 'button'>
               Войти
             </button>
           </p>
         </form>
       </div>
-      <div className="signInField">
+      <div className={activeField === 'sign'? "signInField active" : "signInField"}>
         <p className="Register">Вход</p>
         <p className="error_message"></p>
         <form id="SignInForm" onSubmit = {handleSignIn}>
@@ -107,7 +135,7 @@ export default function InputField() {
           <Button>Отправить</Button>
           <p>
             Нет аккаунта?
-            <button className="Reg" onClick={switchReg}>
+            <button className="Reg" onClick={switchReg} type = 'button'>
               Регистрация
             </button>
           </p>

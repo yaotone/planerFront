@@ -6,6 +6,7 @@ import Calendar from '../../header/calendar';
 import { useEffect, useRef } from 'react';
 import MiniTag from './mini_tag';
 import SelectTag from './select_tag';
+import axios from '../../../api/axios'
 
 export default function AddPlan({tagsArr, choosedTags, planText, 
     calendarValue, hours, minutes, setCalendarValue, setPlanText, setChoosedTags,
@@ -35,14 +36,14 @@ export default function AddPlan({tagsArr, choosedTags, planText,
         }
     }
 
-    function jump(el){
-        let maxLength = el.target.getAttribute('maxLength');
-        if(maxLength && el.target.value.length >= maxLength){
-            el = el.target.nextSibling;
-            el = el.nextSibling;
-            el.focus();
-        }
-    }
+    // function jump(el){
+    //     let maxLength = el.target.getAttribute('maxLength');
+    //     if(maxLength && el.target.value.length >= maxLength){
+    //         el = el.target.nextSibling;
+    //         el = el.nextSibling;
+    //         el.focus();
+    //     }
+    // }
 
     function handlePlanTextChange(el){
         setPlanText(el.target.value);
@@ -68,22 +69,22 @@ export default function AddPlan({tagsArr, choosedTags, planText,
             ...choosedTags.slice(index+1)]);
     }
 
-    function handleMinutesChange(el){
-        let value = el.target.value.replace(/[^0-9]/g, '');
-        if(value > 59){
-            value = '59'
-        }
-        setMinutes(value)
-    }
+    // function handleMinutesChange(el){
+    //     let value = el.target.value.replace(/[^0-9]/g, '');
+    //     if(value > 59){
+    //         value = '59'
+    //     }
+    //     setMinutes(value)
+    // }
 
-    function handleHoursChange(el){
-        let value = el.target.value.replace(/[^0-9]/g, '');
-        if(value > 23){
-            value = '23'
-        }
+    // function handleHoursChange(el){
+    //     let value = el.target.value.replace(/[^0-9]/g, '');
+    //     if(value > 23){
+    //         value = '23'
+    //     }
 
-        setHours(value)
-    }
+    //     setHours(value)
+    // }
 
     function handleHeaderChange(el){
         setHeaderText(el.target.value)
@@ -118,7 +119,7 @@ export default function AddPlan({tagsArr, choosedTags, planText,
                         <div className='date_and_tags'>
                             <div className='dates' ref={calendarRef}>
                                 <Calendar onClick={handleCalendar}></Calendar>
-                                <CalendarPopUp returnValue='range' selectRange = {true} minDate = {new Date()}
+                                <CalendarPopUp minDate = {new Date()}
                                 className={calendarShown ? 'add_dates' : 'add_dates_hidden'} 
                                 value={calendarValue} onChange = {handleDateChange}></CalendarPopUp>
                             </div>
@@ -127,10 +128,10 @@ export default function AddPlan({tagsArr, choosedTags, planText,
                                 {month: 'long', day: 'numeric'}).replace(',', ' - ')}
                             </div>
 
-                            <input type={'text'} className='hours_input' onKeyUp={jump} maxLength={2} size = {2}
+                            {/* <input type={'text'} className='hours_input' onKeyUp={jump} maxLength={2} size = {2}
                             placeholder = 'чч' value={hours} onChange = {handleHoursChange} pattern = {"[0-9]*"}/>
                             :<input type={'text'} className='minute_input' maxLength={2} size = {2}
-                            placeholder = 'мм' value={minutes} onChange = {handleMinutesChange} max = {60} min = {0} pattern = {'[0-9]*'}/>
+                            placeholder = 'мм' value={minutes} onChange = {handleMinutesChange} max = {60} min = {0} pattern = {'[0-9]*'}/> */}
                             <div className='add_tag_to_plan'>
                                 {[...choosedTags].map((item,index)=>
                                     <MiniTag color={item.tagColor} text = {item.tagText} onClick = {() => handleMiniTagClick(index)}></MiniTag>

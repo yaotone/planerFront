@@ -68,10 +68,10 @@ export default function Folder({onClick, isUnfold, tagArr, isShown, setTagArr, s
                 <Tag color={'red'}>Важное</Tag>
                 <Tag color={'#63FF2D'}>Купить</Tag>
                 <Tag color={'#E021FF'}>Подарок</Tag>
-
+{/* 
                 { [...tagArr].map((item, index) => 
                 <UserTag key={index} color={item.tagColor} onClick={()=>remove(index)}> 
-                {item.tagText} </UserTag> ) }
+                {item.tagText} </UserTag> ) } */}
 
                 <AddTag onAdd={handleOnAdd} isShown={isShown}
                 onChangeColor={handleChangeColor} onChangeText={handleChangeText}

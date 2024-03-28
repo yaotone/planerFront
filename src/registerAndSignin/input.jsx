@@ -1,9 +1,10 @@
 import "./input.css";
 
-export default function Input({ children, type, minLength, setName, value }) {
+export default function Input({ children, type, minLength, setName, value, onChange }) {
   return (
     <label>
       <input
+        onChange={onChange}
         className="input"
         placeholder=""
         type={`${type}`}

@@ -1,8 +1,9 @@
+import { useEffect } from "react"
 import "./search_variant.css"
 
-export default function Variant({children}){
+export default function Variant({children, margin, isVisible, onClick}){
     return(
-        <div className="variant">
+        <div onClick={onClick} className={isVisible ? "variant": "variant_hide"} style={{marginTop: `${margin}px`}}>
             <span>{children}</span>
         </div>
     )

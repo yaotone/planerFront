@@ -1,20 +1,23 @@
 import './plan.css'
 import { useState } from 'react';
 import PlanTag from './plan_tag';
+import { useEffect } from 'react';
+import { useRef } from 'react';
+
 
 export default function Plan({header, date, time,text,tagArr, circleColor, onCircleClick}){
+
+    const ref = useRef(null)
 
     const [isFull, setIsFull] = useState(false);
     const [contentHeight, setContentHeight] = useState('80px')
 
+    useEffect(()=>{
+        setContentHeight(ref.current.getBoundingClientRect().height + 60+'px')
+    })
 
     function handlePlanUnfold(){
         setIsFull(!isFull)
-        setContentHeight(document.querySelector('.plan_text').getBoundingClientRect().height + 60)
-    }
-
-    function handleChange(){
-        document.querySelector('.main_content').addEventListener('resize', ()=>setContentHeight(document.querySelector('.plan_text').getBoundingClientRect().height + 60));
     }
 
     function handleComplete(){
@@ -39,17 +42,17 @@ export default function Plan({header, date, time,text,tagArr, circleColor, onCir
                             {time}
                         </div>
                     </div>
-                    <div className='plan_text' onChange={handleChange}>
+                    <div className='plan_text' ref={ref}>
                         {text}
                     </div>
                 </div>
             </div>
             <div className='right_plan'>
 
-                {tagArr.map((el)=>(
+                {/* {tagArr.map((el)=>(
                     <PlanTag tagColor = {el.tagColor} tagText = {el.tagText}></PlanTag>
                     )
-                )}
+                )} */}
 
             </div>
         </div>

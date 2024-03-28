@@ -2,15 +2,22 @@ import './today.css'
 import Plan from './plan'
 import { useState } from 'react';
 import { useEffect } from 'react';
+import axios from '../../../api/axios'
 
-export default function Today({plans, onChange, setCompletePlans}){
-
-    const [plansArr, setPlansArr] = useState(plans);
+export default function Today({plans, onChange, setCompletePlans, setTodayPlans}){
 
     const [isEmpty, setIsEmpty] = useState(false);
 
-    let amount = plansArr.length
+    const dayjs = require('dayjs')
+    require('dayjs/locale/ru')
+    dayjs.locale('ru')
+    dayjs().format()
+    var customParseFormat = require('dayjs/plugin/customParseFormat')
+    dayjs.extend(customParseFormat)
+
+
     useEffect(()=>{
+        let amount = plans.length;
         (amount === 0) ? setIsEmpty(true) : setIsEmpty(false);
     })
 
@@ -21,9 +28,9 @@ export default function Today({plans, onChange, setCompletePlans}){
             </div>
             <div className='plans_horizontal'></div>
             <p className={isEmpty ? 'empty' : 'not_empty'}>Здесь пусто!</p>
-            {[...plansArr].map((item, index)=>
-                <Plan key={index} header = {item.header} date = {item.date} 
-                time = {item.time} text = {item.text} tagArr = {[...item.tags]}></Plan>
+            {[...plans].map((item, index)=>
+                <Plan key={item.id} header = {item.title} date = {dayjs(item.starts_at).format('MMMM DD')} 
+                time = {item.time} text = {item.content} ></Plan>
             )}
         </div>
     )

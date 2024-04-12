@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Plan from '../today/plan'
 import axios from '../../../api/axios'
 
-export default function ChoosedDate({choosedDate}){
+export default function ChoosedDate({choosedDate, setCompletePlans, completePlans}){
     const dayjs = require('dayjs')
     require('dayjs/locale/ru')
     dayjs.locale('ru')
@@ -22,7 +22,15 @@ export default function ChoosedDate({choosedDate}){
             (amount === 0) ? setIsEmpty(true) : setIsEmpty(false);
         })
         .catch(err => console.log(err))
-    },[])
+    },[choosedDate])
+
+    function handleCircleClick(index){
+        setCompletePlans([...completePlans, plans[index]])
+        axios.delete(`/tasks/${plans[index].id}`)
+        setPlans([...plans.slice(0, index),
+            ...plans.slice(index+1)])
+    }
+
     return(
         <div className='add_plan_container'>
                 <div className='add_plan_header'>
@@ -32,7 +40,7 @@ export default function ChoosedDate({choosedDate}){
                 <p className={isEmpty ? 'empty' : 'not_empty'}>Здесь пусто!</p>
                 {[...plans].map((item, index)=>
                     <Plan key={item.id} header = {item.title} date = {dayjs(item.starts_at).format('MMMM DD')} 
-                    time = {item.time} text = {item.content} ></Plan>
+                    time = {item.time} tagArr = {item.tags} text = {item.content} onCircleClick = {()=>handleCircleClick(index)}></Plan>
                 )}
             </div>
     )

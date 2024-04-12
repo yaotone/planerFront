@@ -10,13 +10,13 @@ import axios from '../../../api/axios'
 
 export default function AddPlan({tagsArr, choosedTags, planText, 
     calendarValue, hours, minutes, setCalendarValue, setPlanText, setChoosedTags,
-    setMinutes, setHours, onCircleClick, headerText, setHeaderText}){
+    setMinutes, setHours, onCircleClick, headerText, setHeaderText, shownTags, setShownTags}){
 
     const[isDisabled, setIsDisabled] = useState(false);
 
     const[tagsToChoose, setTagsToChoose] = useState(
         [{tagColor: 'red', tagText: 'Важное'},{tagColor: '#63FF2D', tagText: 'Купить'},
-        {tagColor: '#E021FF', tagText: 'Подарок'}, ...tagsArr]);
+        {tagColor: '#E021FF', tagText: 'Подарок'}]);
 
     const[isTagsShown, setIsTagsShown] = useState(false);
     const[calendarShown, setCalendarShown] = useState(false);
@@ -61,37 +61,23 @@ export default function AddPlan({tagsArr, choosedTags, planText,
     }
 
     function handleTagClick(index){
-        setChoosedTags([...choosedTags,tagsToChoose[index]])
+        setChoosedTags([...choosedTags, index])
+        setShownTags([...shownTags, tagsToChoose[index]])
     }
 
     function handleMiniTagClick(index){
+        setShownTags([...shownTags.slice(0, index),
+            ...shownTags.slice(index+1)]);
         setChoosedTags([...choosedTags.slice(0, index),
-            ...choosedTags.slice(index+1)]);
+            ...choosedTags.slice(index+1)])
     }
-
-    // function handleMinutesChange(el){
-    //     let value = el.target.value.replace(/[^0-9]/g, '');
-    //     if(value > 59){
-    //         value = '59'
-    //     }
-    //     setMinutes(value)
-    // }
-
-    // function handleHoursChange(el){
-    //     let value = el.target.value.replace(/[^0-9]/g, '');
-    //     if(value > 23){
-    //         value = '23'
-    //     }
-
-    //     setHours(value)
-    // }
 
     function handleHeaderChange(el){
         setHeaderText(el.target.value)
     }
 
     useEffect(()=>{
-        if(choosedTags.length>2){
+        if(shownTags.length>2){
             setIsDisabled(true)
         }
         else{
@@ -133,7 +119,7 @@ export default function AddPlan({tagsArr, choosedTags, planText,
                             :<input type={'text'} className='minute_input' maxLength={2} size = {2}
                             placeholder = 'мм' value={minutes} onChange = {handleMinutesChange} max = {60} min = {0} pattern = {'[0-9]*'}/> */}
                             <div className='add_tag_to_plan'>
-                                {[...choosedTags].map((item,index)=>
+                                {[...shownTags].map((item,index)=>
                                     <MiniTag color={item.tagColor} text = {item.tagText} onClick = {() => handleMiniTagClick(index)}></MiniTag>
                                 )}
                                 <div className='add_tag_to_plan_button' onClick={handleAddTag}>Добавить метку</div>

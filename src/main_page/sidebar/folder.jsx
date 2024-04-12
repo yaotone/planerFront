@@ -58,9 +58,9 @@ export default function Folder({onClick, isUnfold, tagArr, isShown, setTagArr, s
                         </div>
                     </div>
                     <div className='folder_right'>
-                        <button className='add_tag' onClick={handleCancel} disabled={!isUnfold}>
+                        {/* <button className='add_tag' onClick={handleCancel} disabled={!isUnfold}>
                             <img src={add} alt="add" className={(isShown==='yes' ? 'add add_rotate' : 'add')}/>
-                        </button>
+                        </button> */}
                     </div>
                 </label>
             </div>

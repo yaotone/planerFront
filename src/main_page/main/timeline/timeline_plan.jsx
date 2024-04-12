@@ -1,7 +1,7 @@
 import './timeline_plan.css'
 import { useState, useEffect } from 'react';
 
-export default function TimelinePlan({header, datestart,dateend, daysPercent}){
+export default function TimelinePlan({header, datestart, dateend, daysPercent}){
 
     const[date,setDate]= useState()
     const[size, setSize] = useState(0);
@@ -14,20 +14,21 @@ export default function TimelinePlan({header, datestart,dateend, daysPercent}){
     var customParseFormat = require('dayjs/plugin/customParseFormat')
     dayjs.extend(customParseFormat)
     
-    // function left(){
-    //     let dates = date.split('-');
-    //     setLeftIndent((dayjs(dates[0],'D MMMM', 'ru').diff(dayjs().month(new Date().getMonth()-1).date(1),'day')+2)*daysPercent) 
-    // }
+    function left(){
+        // console.log(Math.abs(dayjs().subtract(1, 'month').startOf('month').startOf('day').diff(dayjs(datestart, 'MMMM-DD', 'ru'),'day')+2))
+        setLeftIndent(Math.abs(dayjs().subtract(1, 'month').startOf('month').startOf('day').diff(dayjs(datestart, 'MMMM-DD', 'ru'),'day'))*daysPercent) 
+    }
 
     function objSize(){
-        console.log(dayjs(dateend,'D MMMM', 'ru').diff(dayjs(datestart,'D MMMM', 'ru'), 'day'))
-        setSize((dayjs(dateend,'D MMMM', 'ru').diff(dayjs(datestart,'D MMMM', 'ru'), 'day'))*daysPercent);
+        //console.log(Math.abs(dayjs(dateend,'MMMM-DD', 'ru').diff(dayjs(datestart,'MMMM-DD', 'ru'), 'day')))
+        setSize(Math.abs(dayjs(dateend,'MMMM-DD', 'ru').diff(dayjs(datestart,'MMMM-DD', 'ru'), 'day'))*daysPercent);
     }
 
     useEffect(()=>{
-        // left()
+        // console.log(dayjs().subtract(1, 'month').startOf('month').startOf('day'))
+        left()
         objSize()
-    })
+    },[header])
 
     return(
         <div className='timeline_plan_container'>

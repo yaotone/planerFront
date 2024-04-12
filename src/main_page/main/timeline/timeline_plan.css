@@ -54,7 +54,8 @@
 .block{
     position: absolute;
     background-color: #5C62FF;
-    width: 1%;
+    min-width: 1%;
+    min-width: 7px;
     height: 50%;
     border-radius: 5px;
     left: 1%;

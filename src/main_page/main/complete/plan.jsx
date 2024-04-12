@@ -2,10 +2,14 @@ import './plan.css'
 import { useState } from 'react';
 import PlanTag from './plan_tag';
 
-export default function Plan({header, date, time,text,tagArr, circleColor, backgroundCircle} ){
+export default function Plan({header, date, time,text,tagArr, circleColor, backgroundCircle, onCircleClick} ){
 
     const [isFull, setIsFull] = useState(false);
     const [contentHeight, setContentHeight] = useState('80px')
+
+    const[tags, setTags] = useState(
+        [{tagColor: 'red', tagText: 'Важное'},{tagColor: '#63FF2D', tagText: 'Купить'},
+        {tagColor: '#E021FF', tagText: 'Подарок'}]);
 
 
     function handlePlanUnfold(){
@@ -25,7 +29,8 @@ export default function Plan({header, date, time,text,tagArr, circleColor, backg
     return(
         <div className={isFull? 'plan_container full' : 'plan_container'} style={isFull ? {height: contentHeight } : {height: '80px'}} onClick={handlePlanUnfold}>
             <div className='left_plan'>
-                <div className='complete_circle'  style={{backgroundColor:backgroundCircle, outline:`1px solid ${circleColor}`}}></div>
+                <div className='complete_circle'  style={{backgroundColor:backgroundCircle, outline:`1px solid ${circleColor}`}}
+                onClick = {onCircleClick}></div>
                 <div className='plan_data'>
                     <div className='plan_header'>
                         {header}
@@ -44,12 +49,10 @@ export default function Plan({header, date, time,text,tagArr, circleColor, backg
                 </div>
             </div>
             <div className='right_plan'>
-
                 {tagArr.map((el)=>(
-                    <PlanTag tagColor = {el.tagColor} tagText = {el.tagText}></PlanTag>
+                    <PlanTag tagColor = {tags[el].tagColor} tagText = {tags[el].tagText}></PlanTag>
                     )
                 )}
-
             </div>
         </div>
     )

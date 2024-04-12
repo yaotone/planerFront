@@ -1,6 +1,7 @@
 from datetime import datetime, date
 from typing import Optional
 from pydantic import BaseModel, EmailStr
+from typing import List
 
 """ USER SCHEMA """
 class UserCreate(BaseModel):
@@ -60,4 +61,7 @@ class TaskUpdate(TaskBase):
 class Tag(BaseModel):
     id: int
     description: str
+
+class TagAppend(BaseModel):
+    id: List[int]
 

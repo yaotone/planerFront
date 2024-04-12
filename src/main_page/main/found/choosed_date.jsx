@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Plan from '../today/plan'
 import axios from '../../../api/axios'
 
-export default function Found({title, content, date}){
+export default function Found({plans, query, completePlans, setCompletePlans, setAnswer}){
     const dayjs = require('dayjs')
     require('dayjs/locale/ru')
     dayjs.locale('ru')
@@ -12,16 +12,25 @@ export default function Found({title, content, date}){
     var customParseFormat = require('dayjs/plugin/customParseFormat')
     dayjs.extend(customParseFormat)
 
+    function onCircleClick(index){
+        setCompletePlans([...completePlans, plans[index]])
+        axios.delete(`/tasks/${plans[index].id}`)
+        setAnswer([...plans.slice(0, index), ...plans.slice(index+1)])
+    }
+
     return(
         <div className='add_plan_container'>
                 <div className='add_plan_header'>
-                    <p>{title}</p>
+                    <p>результаты по запросу: {query}</p>
                 </div>
                 <div className='plans_horizontal'></div>
                 
-                
-                    <Plan header = {title} date = {dayjs(date).format('MMMM DD')} 
-                    text = {content} ></Plan>
+                    {
+                        [...plans]?.map((item, index)=>{
+                            return <Plan tagArr={item.tags} header = {item.title} date = {dayjs(item.starts_at).format('MMMM DD')} 
+                            text = {item.content} onCircleClick={()=>onCircleClick(index)}></Plan>
+                        })  
+                    }
                 
             </div>
     )

@@ -7,6 +7,9 @@ export default function Plan({header, date, time,text,tagArr, circleColor, backg
     const [isFull, setIsFull] = useState(false);
     const [contentHeight, setContentHeight] = useState('80px')
 
+    const[tags, setTags] = useState(
+        [{tagColor: 'red', tagText: 'Важное'},{tagColor: '#63FF2D', tagText: 'Купить'},
+        {tagColor: '#E021FF', tagText: 'Подарок'}]);
 
     function handlePlanUnfold(){
         setIsFull(!isFull)
@@ -47,7 +50,7 @@ export default function Plan({header, date, time,text,tagArr, circleColor, backg
             <div className='right_plan'>
 
                 {tagArr.map((el)=>(
-                    <PlanTag tagColor = {el.tagColor} tagText = {el.tagText}></PlanTag>
+                    <PlanTag tagColor = {tags[el].tagColor} tagText = {tags[el].tagText}></PlanTag>
                     )
                 )}
 

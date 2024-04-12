@@ -29,11 +29,11 @@ export default function Search({mainContent, setMain, handleVarClick, handleSear
             className="search" onInput={handleSearch} value = {query} onBlur={handleBlur}/>
             
             </div>
-            
+{/*             
             {   
                 [...answer].map((item, index)=>
                 <Variant key={index} onClick={()=>handleVarClick(index)} isVisible={isVisible} margin={(index+1)*30}>{item.title}</Variant>)
-            }
+            } */}
         </div>
     )
 }

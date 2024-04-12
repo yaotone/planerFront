@@ -12,6 +12,10 @@ export default function Plan({header, date, time,text,tagArr, circleColor, onCir
     const [isFull, setIsFull] = useState(false);
     const [contentHeight, setContentHeight] = useState('80px')
 
+    const[tags, setTags] = useState(
+        [{tagColor: 'red', tagText: 'Важное'},{tagColor: '#63FF2D', tagText: 'Купить'},
+        {tagColor: '#E021FF', tagText: 'Подарок'}]);
+
     useEffect(()=>{
         setContentHeight(ref.current.getBoundingClientRect().height + 60+'px')
     })
@@ -49,10 +53,10 @@ export default function Plan({header, date, time,text,tagArr, circleColor, onCir
             </div>
             <div className='right_plan'>
 
-                {/* {tagArr.map((el)=>(
-                    <PlanTag tagColor = {el.tagColor} tagText = {el.tagText}></PlanTag>
+                {tagArr.map((el)=>(
+                    <PlanTag tagColor = {tags[el].tagColor} tagText = {tags[el].tagText}></PlanTag>
                     )
-                )} */}
+                )}
 
             </div>
         </div>

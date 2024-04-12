@@ -20,23 +20,7 @@ export default function InputField({setAccessToken}) {
     else{
       setActiveField('reg')
     }
-    // if(activeField === 'reg'){
-    //   document.querySelector(".inputField").classList.remove("active");
-    //   document.querySelector(".signInField").classList.add("active");
-    // }
-    // else{
-    //   setActiveField('reg')
-    // }
-    // if (
-    //   document.querySelector(".inputField").classList.contains("active") ===
-    //   true
-    // ) {
-    //   document.querySelector(".inputField").classList.remove("active");
-    //   document.querySelector(".signInField").classList.add("active");
-    // } else {
-    //   document.querySelector(".signInField").classList.remove("active");
-    //   document.querySelector(".inputField").classList.add("active");
-    // }
+
   }
 
   const [error, setError] = useState('');

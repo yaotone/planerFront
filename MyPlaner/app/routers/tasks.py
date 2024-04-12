@@ -8,9 +8,9 @@ from ..database import get_db
 
 """CONST DATETIME VARIABLE BLOCK"""
 
-today_date = datetime.datetime.today().strftime('%Y-%m-%d')
-current_month_obj = datetime.datetime.strptime(today_date, '%Y-%m-%d')
-current_month = current_month_obj.month
+TODAY_DATE = datetime.datetime.today().strftime('%Y-%m-%d')
+current_month_obj = datetime.datetime.strptime(TODAY_DATE, '%Y-%m-%d')
+CURRENT_MONTH = current_month_obj.month
 
 
 """CONST DATETIME VARIABLE BLOCK"""
@@ -26,12 +26,26 @@ router = APIRouter(
 
 @router.get('/today', response_model=List[schemas.Task])
 def get_today_tasks(db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
-    tasks = db.query(models.Tasks).filter(models.Tasks.owner_id == current_user.id).filter(models.Tasks.starts_at == today_date).all()
+    tasks = db.query(models.Tasks).filter(models.Tasks.owner_id == current_user.id).filter(models.Tasks.starts_at == TODAY_DATE).all()
 
     if tasks is None:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Tasks does not exits")
-    
-    return tasks
+    return tasks 
+
+""" TAKE OUTDATED TASKS """
+
+@router.get('/outdated', response_model=List[schemas.Task])
+def get_outdated_tasks(current_date = TODAY_DATE, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+    tasks = db.query(models.Tasks).filter(models.Tasks.owner_id == current_user.id).filter(models.Tasks.starts_at < current_date).all()
+
+    if tasks is None:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Tasks does not exits")
+    return tasks 
+
+
+
+
+
 
 """ TAKE AUTH USER OWN TASKS (ALL) """
 
@@ -58,10 +72,10 @@ def get_current_month_tasks(db: Session = Depends(get_db), current_user: int = D
 
 """ TAKE AUTH USER OWN TASKS (BY MONTH) """
 
-@router.get('/month', response_model=List[schemas.Task])
+@router.get('/month/{date_query}', response_model=List[schemas.Task])
 def get_month_tasks(date_query: datetime.date, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
-    query_month_obj = datetime.datetime.strptime(date_query, '%Y-%m-%d')
-    query_month = query_month_obj.month
+    # query_month_obj = datetime.datetime.strptime(date_query, '%Y-%m-%d')
+    query_month = date_query.month
     tasks = db.query(models.Tasks).filter(models.Tasks.owner_id == current_user.id).filter(extract(
         'month', models.Tasks.starts_at) == query_month).all()
 

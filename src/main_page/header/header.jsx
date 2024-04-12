@@ -9,6 +9,7 @@ import {Calendar as CalendarPopUp} from 'react-calendar';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
+import { useNavigate } from "react-router-dom";
 
 
 function handleSwitch(){
@@ -20,6 +21,7 @@ function handleSwitch(){
 
 export default function Header({onAddTagClick, setChoosedDate, setMain, choosedDate, 
     mainContent, varClick, handleSearch, query, answer}){
+    const navigate = useNavigate();
 
     const[isCalendarShown, setIsCalendarShown] = useState(false);
     const calendarRef = useRef(null);
@@ -41,6 +43,11 @@ export default function Header({onAddTagClick, setChoosedDate, setMain, choosedD
 
     function handleDate(value){
         setChoosedDate(value)
+    }
+
+    function handleExit(){
+        localStorage.setItem('token','')
+        navigate('/')
     }
 
     useEffect(()=>{
@@ -72,7 +79,7 @@ export default function Header({onAddTagClick, setChoosedDate, setMain, choosedD
                     >1/4</span> */}
                 </div>
                 <div className='exit'>
-                    <img className="exit_icon" src={exit} alt="exit" />
+                    <img className="exit_icon" src={exit} onClick={handleExit} alt="exit" />
                 </div>
             </div>
         </>

@@ -1,12 +1,14 @@
 import { useState } from 'react'
-import TimelinePlan from './timeline_plan'
+import TimelinePlan from './timeline_plan.jsx'
 import './timeline.css'
 import { useEffect } from 'react'
 import axios from '../../../api/axios'
 
 
 export default function Timeline({plans}){
-    const[plan, setPlan] = useState([...plans])
+
+
+    const[isEmpty, setIsEmpty] = useState(true)
 
     const dayjs = require('dayjs')
     require('dayjs/locale/ru')
@@ -18,14 +20,26 @@ export default function Timeline({plans}){
     const[daysPercent, setDaysPercent] = useState(100/(dayjs(new Date(new Date().setDate(0))).daysInMonth()
     +dayjs().daysInMonth()+dayjs().month(new Date().getMonth()+1).daysInMonth()));
 
+
+  async function getTasksByMonth(month){
+    const tasks = await axios.get(`/tasks/month/${month}`)
+      return tasks.data
+
+  }
+
+  async function getTasks(){
+    const tasks = await axios.get(`/tasks/month/${dayjs().format('YYYY-MM-DD')}`)
+  }
+
     useEffect(()=>{
-        // axios.get(`/tasks/month?date_query="${dayjs().format('YYYY-MM-DD')}"`)
-        // .then(data => console.log(data))
-        // .catch(err => console.log(err))
-        setDaysPercent()
-        setPlan(plans)
-        console.log(plans)
-    },[plan])
+
+        if(plans.length === 0){
+            setIsEmpty(true)
+        }
+        else{
+            setIsEmpty(false)
+        }
+    })
 
     return(
         <div className='timeline_container'>
@@ -42,8 +56,10 @@ export default function Timeline({plans}){
                 <div className='next_month'>{dayjs().month(new Date().getMonth()+1).format('MMMM')[0].toUpperCase()
                 +dayjs().month(new Date().getMonth()+1).format('MMMM').slice(1)}</div>
             </div>
-            {[...plans].map((item)=>{
-                <TimelinePlan daysPercent={daysPercent} header = {item.title} dateend = {dayjs(item.starts_at).format('MMMM-DD')} datestart={dayjs(item.owner.created_at).format('MMMM-DD')}></TimelinePlan>
+            <p className={isEmpty ? 'empty' : 'not_empty'}>Здесь пусто!</p>
+            {
+            [...plans].map((item, index)=>{
+                return <TimelinePlan daysPercent={daysPercent} header = {item.title} dateend = {dayjs(item.starts_at).format('MMMM-DD')} datestart={dayjs(item.created_at).format('MMMM-DD')}></TimelinePlan>
             })}
         </div>
     )

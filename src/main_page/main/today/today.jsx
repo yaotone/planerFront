@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from '../../../api/axios'
 
-export default function Today({plans, onChange, setCompletePlans, setTodayPlans}){
+export default function Today({plans, onChange, setCompletePlans, setTodayPlans, completePlans, todayPlans}){
 
     const [isEmpty, setIsEmpty] = useState(false);
 
@@ -15,6 +15,12 @@ export default function Today({plans, onChange, setCompletePlans, setTodayPlans}
     var customParseFormat = require('dayjs/plugin/customParseFormat')
     dayjs.extend(customParseFormat)
 
+    function handleCircleClick(index){
+        setCompletePlans([...completePlans, plans[index]])
+        axios.delete(`/tasks/${plans[index].id}`)
+        setTodayPlans([...todayPlans.slice(0, index),
+            ...todayPlans.slice(index+1)])
+    }
 
     useEffect(()=>{
         let amount = plans.length;
@@ -30,7 +36,7 @@ export default function Today({plans, onChange, setCompletePlans, setTodayPlans}
             <p className={isEmpty ? 'empty' : 'not_empty'}>Здесь пусто!</p>
             {[...plans].map((item, index)=>
                 <Plan key={item.id} header = {item.title} date = {dayjs(item.starts_at).format('MMMM DD')} 
-                time = {item.time} text = {item.content} ></Plan>
+                time = {item.time} tagArr = {item.tags} text = {item.content} onCircleClick = {()=>handleCircleClick(index)}></Plan>
             )}
         </div>
     )
